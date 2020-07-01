@@ -15,15 +15,16 @@ if __name__ == '__main__':
         for row in data[sheet]:
             _id = row.get('会员号')
             counter = row.get('柜台名')
+            times = row.get('领取件数')
             if counter == 'EC':
                 counter = 'online'
             else:
                 counter = 'offline'
             if not _id in mem_dict:
                 mem_dict[_id] = {'data': [row], 'online': 0, 'offline': 0}
-                mem_dict[_id][counter] += 1
+                mem_dict[_id][counter] += times
             else:
-                mem_dict[_id][counter] += 1
+                mem_dict[_id][counter] += times
                 mem_dict[_id]['data'].append(row)
 
     sheet_1 = [] # online and offline, offline once
