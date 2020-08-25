@@ -7,7 +7,7 @@ sys.path.insert(0, parent_dir)
 from common.excel import ExlProcess
 
 if __name__ == '__main__':
-    file_path = '/Users/zhiqibao/Desktop/Project/files/chloe_files.xlsx'
+    file_path = '/Users/zhiqibao/Desktop/Project/files/20200803_chloe_files.xlsx'
     xl_obj = ExlProcess()
     data = xl_obj.extract_data(file_path, way='index', sheet_name=[0])
     mem_dict = {}
@@ -31,6 +31,7 @@ if __name__ == '__main__':
     sheet_2 = [] # online and offline, offline multi
     sheet_3 = [] # online only, online multi
     sheet_4 = [] # offline only, offline multi
+    sheet_5 = []  # offline only, offline multi
 
     for _id in mem_dict:
         tmp_data = mem_dict[_id].get('data')
@@ -45,11 +46,15 @@ if __name__ == '__main__':
         elif online_count == 0 and offline_count > 1:
             sheet_4 += tmp_data
         else:
-            pass
-
+            sheet_5 += tmp_data
     xl_obj.write_data(file_path, 1, sheet_1)
+    # print(sheet_2)
     xl_obj.write_data(file_path, 2, sheet_2)
+    # print(sheet_3)
     xl_obj.write_data(file_path, 3, sheet_3)
+    # print(sheet_4)
     xl_obj.write_data(file_path, 4, sheet_4)
+
+    xl_obj.write_data(file_path, 5, sheet_5)
 
 
